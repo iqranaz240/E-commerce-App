@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@mui/material/*": [
+                "node_modules/@mui/material/*"
+            ]
+        },
+      "target": "ES6", // Target JavaScript version
+        "lib": [
+            "ES6",
+            "DOM"
+        ], // List of libraries
+        "jsx": "react", // JSX support
+        "strict": true, // Enable strict mode
+        "esModuleInterop": true, // Allows importing CommonJS modules
+        "skipLibCheck": true, // Skip type checking of declaration files
+        "forceConsistentCasingInFileNames": true, // Enforce consistent casing in file names
+        // Output directory
+        "outDir": "./dist",
+        // Source map support
+        "sourceMap": true,
+        // Allows custom JSX factories (e.g., React 17+)
+        "jsxFactory": "React.createElement",
+        "moduleResolution": "node",
+        // Allows importing JSON files
+        "resolveJsonModule": true
+    },
+    // File and directory includes/excludes
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.tsx"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
