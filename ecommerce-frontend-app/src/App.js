@@ -9,13 +9,13 @@ import Navbar from './components/Navbar.tsx'
 function App() {
   return (
     <>
+    <Navbar/>
        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
        </Routes>
-       <Navbar/>
     </>
   );
 }
