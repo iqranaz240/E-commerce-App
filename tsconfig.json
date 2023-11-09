@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+      "target": "es5", // Set your target version
+      "lib": ["dom", "dom.iterable", "esnext"],
+      "allowJs": true,
+      "jsx": "react",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "noFallthroughCasesInSwitch": true,
+      "noEmit": true,
+      "module": "esnext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "removeComments": true,
+      "declaration": true,
+      "outDir": "./dist", // Specify your output directory
+      "rootDir": "./src", // Specify your source code directory
+      "strictPropertyInitialization": false, // Set to true to enforce strict property initialization
+      "strictNullChecks": true,
+      "strictFunctionTypes": true,
+      "noImplicitAny": true
+    },
+    "include": ["src/**/*.tsx", "src/**/*.ts"],
+    "exclude": ["node_modules"]
+  }
+  
