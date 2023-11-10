@@ -6,6 +6,7 @@ export interface CartItem {
   price: number;
   imgdata: string;
   qnty: number;
+  total: number;
 }
 
 interface CartState {
@@ -26,7 +27,7 @@ const cartSlice = createSlice({
         state.carts[itemIndex].qnty += 1;
       } else {
         state.carts.push({ ...action.payload, qnty: 1 });
-      }
+      } 
     },
     removeCartItem: (state, action: PayloadAction<number>) => {
       state.carts = state.carts.filter((item) => item.id !== action.payload);

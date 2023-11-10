@@ -21,8 +21,12 @@
       "strictPropertyInitialization": false, // Set to true to enforce strict property initialization
       "strictNullChecks": true,
       "strictFunctionTypes": true,
-      "noImplicitAny": true
+      "noImplicitAny": true,
+      "paths": {
+             "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
+           }
     },
+
     "include": ["src/**/*.tsx", "src/**/*.ts"],
     "exclude": ["node_modules"]
   }
