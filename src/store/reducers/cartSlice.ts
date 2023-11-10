@@ -30,7 +30,7 @@ const cartSlice = createSlice({
       } 
     },
     removeCartItem: (state, action: PayloadAction<number>) => {
-      state.carts = state.carts.filter((item) => item.id !== action.payload);
+      state.carts = state.carts.filter((item) => item.id !== action.payload); //use splice to remove items
     },
     decreaseQuantity: (state, action: PayloadAction<number>) => {
       const itemIndex = state.carts.findIndex((item) => item.id === action.payload);

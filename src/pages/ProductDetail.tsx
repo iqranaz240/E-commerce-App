@@ -41,6 +41,8 @@ const CardsDetails: React.FC = () => {
     dispatch(removeCartItem(id));
     history('/'); // Navigate to the root route
   };
+  // eslint-disable-next-line no-lone-blocks
+  {console.log('elementL ', data)}
 
   return (
     <div className="container mt-2">
@@ -51,7 +53,6 @@ const CardsDetails: React.FC = () => {
               <div className="items_img">
                 <img src={ele.imgdata} alt={ele.rname} />
               </div>
-
               <div className="details">
                 <Table>
                   <tbody>
@@ -69,7 +70,7 @@ const CardsDetails: React.FC = () => {
                         <p>
                           <strong>Total</strong> : {ele.price}
                         </p>
-                        <Counter cart={ele} />
+                        <Counter cart={(ele)} />
                         <p>
                           <br />
                           <strong>Remove :</strong>{' '}
