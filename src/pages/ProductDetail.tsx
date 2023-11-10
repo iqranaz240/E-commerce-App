@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/reducers/main';
 import { addCartItem, removeCartItem, decreaseQuantity } from '../store/reducers/cartSlice';
 import { CartItem } from '../store/reducers/cartSlice';
-import Counter from './common/Counter';
+import Counter from '../components/common/Counter';
 
 interface CardDetailsProps {
   id: number;
@@ -69,7 +69,7 @@ const CardsDetails: React.FC = () => {
                         <p>
                           <strong>Total</strong> : {ele.price}
                         </p>
-                        <Counter cart={cart} />
+                        <Counter cart={ele} />
                         <p>
                           <br />
                           <strong>Remove :</strong>{' '}

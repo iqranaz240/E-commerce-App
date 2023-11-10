@@ -203,6 +203,7 @@ const Header = () => {
               noWrap
               component="div"
               sx={{ display: { xs: 'none', sm: 'block' } }}
+              style={{color: "white", fontSize: "2rem", fontWeight: "bold"}}
             >
               ECOMMERCE
             </Typography>

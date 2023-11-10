@@ -30,12 +30,12 @@ const Counter = (props: any) => {
 
   return (
     <>
-                        <div className="mt-5 d-flex justify-content-between align-items-center" style={{ width: 100, cursor: 'pointer', background: '#ddd', color: '#111' }}>
-                          <span style={{ fontSize: 28, padding: 10 }} onClick={() => (cart && cart.qnty <= 1 ? dlt(cart.id) : removeOne(cart))}>
+                        <div className="mt-5 d-flex justify-content-between align-items-center" style={{ width: 100, cursor: 'pointer', color: '#111', textAlign: 'center' }}>
+                          <span style={{ fontSize: 20, padding: 10, width: "4rem", height: "3rem", background: '#ddd', borderRadius: '0.7rem' }} onClick={() => (cart && cart.qnty <= 1 ? dlt(cart.id) : removeOne(cart))}>
                             -
                           </span>
-                          <span style={{ fontSize: 22, padding: 10 }}>{cart && cart.qnty}</span>
-                          <span style={{ fontSize: 28, padding: 10 }} onClick={() => send(cart)}>
+                          <span style={{ fontSize: 20, padding: 10, textAlign: 'center' }}>   {cart && cart.qnty}   </span>
+                          <span style={{ fontSize: 20, padding: 10, width: "4rem", height: "3rem", background: '#ddd', borderRadius: '0.7rem' }} onClick={() => send(cart)}>
                             +
                           </span>
                         </div>
