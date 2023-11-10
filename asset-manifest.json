@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/iqranaz240/E-commerce-App/static/css/main.6ccd65a8.css",
+    "main.js": "/iqranaz240/E-commerce-App/static/js/main.b3547273.js",
+    "index.html": "/iqranaz240/E-commerce-App/index.html",
+    "main.6ccd65a8.css.map": "/iqranaz240/E-commerce-App/static/css/main.6ccd65a8.css.map",
+    "main.b3547273.js.map": "/iqranaz240/E-commerce-App/static/js/main.b3547273.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6ccd65a8.css",
+    "static/js/main.b3547273.js"
+  ]
+}
