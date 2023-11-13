@@ -8,7 +8,9 @@ import { RootState } from '../store/reducers/main'
 
 const Cards = () => {
   const products = useSelector((state: RootState) => state.productReducer.products); // Get the data from the Redux store
+  const getUser = useSelector((state: RootState) => state.userReducer.user);
   const dispatch = useDispatch();
+  console.log('User: ', getUser)
 
   const send = (item:any) => {
     console.log('Adding item to the cart:', item);
