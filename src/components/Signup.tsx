@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Typography, Grid, Container } from '@mui/material';
 import { Form } from '../components/common/Form';
-import { signupUser } from '../services/firebase';
+import { signupUser } from '../services/firebaseAuth';
+import { createUser} from '../services/userData'
 import { useDispatch } from 'react-redux';
 import { addUser } from '../store/reducers/userSlice';
 
@@ -32,6 +33,8 @@ const Signup: React.FC = () => {
             if (signup) {
                 // Create a new user object with login set to true
                 const newUser = { ...formData, login: true };
+                console.log('Signup data form: ', signup)
+                createUser(signup.uid, {...formData})
                 await dispatch(addUser(newUser));
 
                 setFormData({

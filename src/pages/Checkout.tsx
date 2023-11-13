@@ -5,6 +5,9 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store/reducers/main';
 import { GetOrderTotal } from '../services/orderTotal';
 import ProductCart from '../components/ProductCart';
+import { createOrder } from '../services/order';
+import { auth } from '../services/firebaseAuth';
+import { useNavigate } from 'react-router-dom';
 
 const Checkout: React.FC = () => {
     const cartData = useSelector((state: RootState) => state.cartReducer.carts);
@@ -15,25 +18,36 @@ const Checkout: React.FC = () => {
         phone: '',
         address: '',
     });
+    const navigate = useNavigate();
+
     const price = GetOrderTotal();
     const deleteButton = false;
     const counter = false;
+    const userId = auth?.currentUser.uid;
+    console.log(userId)
 
     const handleInputChange = (name: string, value: string) => {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
-    const handleCheckout = () => {
-        // Perform checkout logic here (e.g., send order to backend)
-        console.log('Order placed:', { formData });
-        // Reset form after checkout
-        setFormData({
-            firstName: '',
-            lastName: '',
-            email: '',
-            phone: '',
-            address: '',
-        });
+    const handleCheckout = async () => {
+        console.log(cartData)
+        if ( userId ) {
+            await createOrder(userId, cartData)
+            console.log('Order placed:', { formData });
+            // Reset form after checkout
+            setFormData({
+                firstName: '',
+                lastName: '',
+                email: '',
+                phone: '',
+                address: '',
+            });
+        }
+        else {
+            navigate('/login')
+        }
+        // Perform checkout logic here (e.g., send order to backend) 
     };
 
     return (

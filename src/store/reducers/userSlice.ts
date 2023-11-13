@@ -40,7 +40,7 @@ const userSlice = createSlice({
                 state.user.login = true;
             }
         },
-        logoutUser: (state) => {
+        logoutUser: (state, action: PayloadAction<boolean>) => {
             // Check if the user is logged in and then update the user
             if (state.user.login) {
                 state.user.login = false;

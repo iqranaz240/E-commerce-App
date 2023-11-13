@@ -20,8 +20,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import { RootState } from '../../store/reducers/main'
 import { removeCartItem } from '../../store/reducers/cartSlice';
 import Cart from '../Cart';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
+import { logoutUser } from '../../store/reducers/userSlice';
+import { auth, signout } from '../../services/firebaseAuth';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -68,25 +70,23 @@ const Header = () => {
   const getdata = useSelector((state: RootState) => state.cartReducer.carts);
   const getUser = useSelector((state: RootState) => state.userReducer.user);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const [anchorElCart, setAnchorElCart] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorElCart);
+  const navigate = useNavigate();
 
-  const settings = ['Profile', 'Orders', 'Wishlist', 'Customer Suppot', 'Login'];
-  const url = ['/profile', '/orders', '/wishlist', '/customer-service', '/login'];
-
-  const setting = useMemo(() => settings, [settings]);
-console.log(getUser)
-  useEffect(() => {
-    if (getUser.login) {
-      setting.splice(3, 1, 'Logout');
-      url.splice(3, 1, '/')
-    }
-  });
+  const setting = ['Profile', 'Orders', 'Wishlist', 'Customer Suppot', 'Logout'];
+  const url = ['/profile', '/orders', '/wishlist', '/customer-service', '/'];
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
+    if (!auth?.currentUser?.uid) {
+      navigate('/login')
+    }
+    else {
+      setAnchorElUser(event.currentTarget);
+    }
   };
 
   const handleCloseUserMenu = () => {
@@ -100,6 +100,11 @@ console.log(getUser)
   const handleClose = () => {
     setAnchorElCart(null);
   };
+
+  const handleLogout = async () => {
+    console.log(location.pathname)
+    await signout();
+  }
 
   const dlt = (id: number) => {
     dispatch(removeCartItem(id));
@@ -224,7 +229,7 @@ console.log(getUser)
                       <Typography textAlign="center">{setting[3]}</Typography>
                     </MenuItem>
                     </NavLink>
-                    <NavLink to={url[4]} >
+                    <NavLink to={url[4]} onClick={handleLogout} >
                     <MenuItem onClick={handleCloseUserMenu}>
                       <Typography textAlign="center">{setting[4]}</Typography>
                     </MenuItem>

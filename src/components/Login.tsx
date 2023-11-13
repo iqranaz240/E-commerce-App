@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Typography, Grid, Container, TextField, Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../store/reducers/userSlice';
-import { handleLogin } from '../services/firebase';
-
+import { loginUser } from '../services/firebaseAuth';
+import { useNavigate } from 'react-router-dom';
 // Import your loginUser function or login logic here if available
 // import { loginUser } from '../services/firebase';
 
@@ -13,10 +13,16 @@ const LoginUser: React.FC = () => {
         password: '',
     });
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleInputChange = (name: string, value: string) => {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
+
+    const handleLogin = async() => {
+        await loginUser(formData.email, formData.password);
+        navigate('/');
+    }
 
     return (
         <>
@@ -47,7 +53,7 @@ const LoginUser: React.FC = () => {
                     color="primary"
                     fullWidth
                     style={{ marginTop: '1rem', height: '4rem' }}
-                    // onClick={handleLogin}
+                    onClick={handleLogin}
                 >
                     Login
                 </Button>

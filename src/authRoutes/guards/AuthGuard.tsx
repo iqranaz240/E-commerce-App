@@ -1,5 +1,6 @@
 import React, { useEffect, useState, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { auth } from '../../services/firebaseAuth';
 
 interface AuthGuardProps {
     component: ReactNode;
@@ -16,9 +17,9 @@ const AuthGuard: React.FC<AuthGuardProps> = ({ component }) => {
 
     const checkToken = async () => {
         try {
-            let user = ''; // Replace this with your actual user authentication logic
-            if (!user) {
-                navigate(`/`);
+            let userId = auth?.currentUser?.uid // Replace this with your actual user authentication logic
+            if (!userId) {
+                navigate(`/`); //auth routes shouldnot be visible without login, redirect to 401
             }
             setStatus(true);
             return;

@@ -5,12 +5,14 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addCartItem } from '../store/reducers/cartSlice';
 import { RootState } from '../store/reducers/main'
+import { auth } from '../services/firebaseAuth';
 
 const Cards = () => {
   const products = useSelector((state: RootState) => state.productReducer.products); // Get the data from the Redux store
   const getUser = useSelector((state: RootState) => state.userReducer.user);
   const dispatch = useDispatch();
   console.log('User: ', getUser)
+  console.log('Auth: ', auth)
 
   const send = (item:any) => {
     console.log('Adding item to the cart:', item);
