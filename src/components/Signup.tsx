@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Typography, Grid, Container } from '@mui/material';
 import { Form } from '../components/common/Form';
 import { signupUser } from '../services/firebase';
@@ -16,7 +17,7 @@ const Signup: React.FC = () => {
     });
     const signup = true;
     const dispatch = useDispatch();
-    let login = false;
+    const navigate = useNavigate();
 
     const handleInputChange = (name: string, value: string) => {
         setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -42,7 +43,7 @@ const Signup: React.FC = () => {
                     password: '',
                 });
 
-                window.location.href = '/';
+                navigate('/');
                 console.log('User successfully signed up:', newUser);
             }
         } catch (error) {

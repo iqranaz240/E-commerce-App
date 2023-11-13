@@ -27,7 +27,7 @@
            }
     },
 
-    "include": ["src/**/*.tsx", "src/**/*.ts", "src/index.js"],
+    "include": ["src/**/*.tsx", "src/**/*.ts", "src/index.js", "src/firebase/firebaseConfig.ts"],
     "exclude": ["node_modules"]
   }
   

@@ -77,13 +77,13 @@ const Header = () => {
   const url = ['/profile', '/orders', '/wishlist', '/customer-service', '/login'];
 
   const setting = useMemo(() => settings, [settings]);
-
+console.log(getUser)
   useEffect(() => {
     if (getUser.login) {
       setting.splice(3, 1, 'Logout');
       url.splice(3, 1, '/')
     }
-  }, [getUser.login, setting]);
+  });
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
