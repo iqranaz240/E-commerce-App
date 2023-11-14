@@ -32,8 +32,22 @@ const Checkout: React.FC = () => {
 
     const handleCheckout = async () => {
         console.log(cartData)
-        if ( userId ) {
-            await createOrder(userId, cartData)
+        let dataObject: any = {};
+
+        // Iterate over the input data and populate the dataObject
+        cartData.forEach(item => {
+            const { id, ...rest } = item;
+            dataObject[id] = { ...rest };
+        });
+
+        console.log(dataObject);
+        // const data = {}
+        // {cartData.map((e: any) => {
+
+        // })
+
+        if (userId) {
+            await createOrder(userId, dataObject)
             console.log('Order placed:', { formData });
             // Reset form after checkout
             setFormData({
@@ -48,7 +62,9 @@ const Checkout: React.FC = () => {
             navigate('/login')
         }
         // Perform checkout logic here (e.g., send order to backend) 
-    };
+    }
+
+
 
     return (
         <Container maxWidth="md" style={{ marginTop: '2rem' }}>
@@ -73,7 +89,7 @@ const Checkout: React.FC = () => {
                 </Grid>
             </Grid>
         </Container>
-    );
-};
+    )
+}
 
 export default Checkout;

@@ -9,21 +9,17 @@ export const auth: any = getAuth(app);
 const db = database;
 const userId = auth?.currentUser?.uid;
 
-export const createOrder = async (userId: any, {id, name, price, quantity}) => {
+export const createOrder = async (userId: any, order: any) => {
     const apiUrl = `${firebaseConfig.databaseURL}/orders.json`;
     console.log(apiUrl)
-    if (userId && order.length)
-    try {
-      const response = await axios.post(apiUrl, {
+    const data: any = {
         userId: userId,
-        order: {
-            id: {
-                product: name,
-                price: price,
-                quantity: quantity
-            },
-        }
-    });
+        order: {...order}
+    }
+    console.log(data)
+    // if (userId && order.length)
+    try {
+      const response = await axios.post(apiUrl, data);
       // Handle success if needed
       console.log('Order placed successfully: ', response);
     } catch (error) {
