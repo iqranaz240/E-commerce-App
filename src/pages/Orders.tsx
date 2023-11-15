@@ -28,7 +28,7 @@ const Order = () => {
         {orderData ? (
           <OrderHistory orders={orderData} />
         ) : (
-          <CircularProgress sx={{ mt: 2 }} />
+          <Typography>No order found</Typography>
         )}
     </Container>
   );

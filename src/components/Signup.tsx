@@ -56,7 +56,7 @@ const Signup: React.FC = () => {
     };
 
     return (
-        <Container maxWidth="md" style={{ marginTop: '2rem' }}>
+        <Container maxWidth="md" style={{ marginTop: '8rem' }}>
             <Typography variant="h4" align="center" gutterBottom>
                 User Registeration
             </Typography>
