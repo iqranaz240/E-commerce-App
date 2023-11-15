@@ -1,47 +1,60 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { addCartItem } from '../store/reducers/cartSlice';
-import { RootState } from '../store/reducers/main'
+import { RootState } from '../store/reducers/main';
 import { auth } from '../services/firebaseAuth';
+import Container from '@mui/material/Container';
 
 const Cards = () => {
-  const products = useSelector((state: RootState) => state.productReducer.products); // Get the data from the Redux store
+  const products = useSelector((state: RootState) => state.productReducer.products);
   const getUser = useSelector((state: RootState) => state.userReducer.user);
   const dispatch = useDispatch();
-  console.log('User: ', getUser)
-  console.log('Auth: ', auth)
 
-  const send = (item:any) => {
+  const send = (item: any) => {
     console.log('Adding item to the cart:', item);
     dispatch(addCartItem(item));
   };
 
   return (
-    <div className='container mt-3'>
-      <h2 className='text-center'></h2>
-
-      <div className="row d-flex justify-content-center align-items-center">
+    <Container >
+      <Grid container spacing={12} justifyContent="center" alignItems="stretch" marginTop={2}>
         {products.map((element, id) => (
-          <Card key={id} style={{ width: '22rem', border: "none" }} className="mx-2 mt-4 card_style" >
-            <NavLink to={`/cart/${element.id}`}>
-              <Card.Img variant="top" src={element.imgdata} style={{ height: "16rem" }} className="mt-3" />
-            </NavLink>
-            <Card.Body>
-              <Card.Title>{element.rname}</Card.Title>
-              <Card.Text>
-                Price: {element.price}
-              </Card.Text>
-              <div className="button_div d-flex justify-content-center">
-                <Button variant="primary" onClick={() => send(element)} className='col-lg-12'>Add to Cart</Button>
-              </div>
-            </Card.Body>
-          </Card>
+          <Grid item key={id} xs={12} sm={6} md={4}>
+            <Card sx={{ width: '100%', height:'25rem', display: 'flex', flexDirection: 'column' }}>
+              <NavLink to={`/cart/${element.id}`} style={{ textDecoration: 'none' }}>
+                <CardMedia
+                  component="img"
+                  alt={element.rname}
+                  height="250"
+                  image={element.imgdata}
+                />
+              </NavLink>
+              <CardContent sx={{ flex: '1 0 auto' }}>
+                <Typography variant="h5" component="div">
+                  {element.rname}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {element.address}
+                </Typography>
+                <Typography variant="h6" component="div">
+                  PKR {element.price}
+                </Typography>
+              </CardContent>
+              <Button variant="contained" color="primary" onClick={() => send(element)}>
+                Add to Cart
+              </Button>
+            </Card>
+          </Grid>
         ))}
-      </div>
-    </div>
+      </Grid>
+    </Container>
   );
 };
 

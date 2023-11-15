@@ -7,6 +7,7 @@ export interface ProductItem {
   price: number;
   imgdata: string;
   qnty: number;
+  address: string;
 }
 
 interface ProductState {

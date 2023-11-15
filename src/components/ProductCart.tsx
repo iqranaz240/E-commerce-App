@@ -1,54 +1,51 @@
-
-import React, { useEffect, useState } from 'react';
-import Table from 'react-bootstrap/Table';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store/reducers/main'
-import { addCartItem, removeCartItem, decreaseQuantity, CartItem } from '../store/reducers/cartSlice';
-import Counter from './common/Counter';
-import { Button } from '@mui/material';
+import { Button, Box, Paper, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from '@mui/material';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
-import Box from '@mui/material/Box';
+import Counter from './common/Counter';
 import { DeleteProduct } from './common/DeleteProduct';
 
 const ProductCart = (props: any) => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    return (
-
-        <div className='card_details' style={{ width: "26rem", padding: 10 }}>
-            <Table>
-                <thead>
-                    <tr>
-                    <th>Product Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {props.data.map((e: any) => (
-                        <tr key={e.id}>
-                            <td>
-                                <NavLink to={`/cart/${e.id}`} onClick={handleClose}>
-                                    <img src={e.imgdata} style={{ width: "5rem", height: "5rem" }} alt="" />
-                                </NavLink>
-                            </td>
-                            <td>
-                                <p>{e.rname}</p>
-                                <p>Price: {e.price}</p>
-                                <p>Quantity: {e.qnty}</p>
-                                {props.counter && <Counter cart={e} />}
-                            </td>
-
-                            {props.deleteButton && <DeleteProduct id={e.id} />}
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
-        </div>
-    )
+  return (
+    <Box maxWidth="sm" mx="auto" mt={2}>
+      <Paper elevation={3} style={{ padding: 16 }}>
+        <TableContainer>
+          <Table>
+            <TableBody>
+              {props.data.map((e: any) => (
+                <TableRow key={e.id}>
+                  <TableCell>
+                    <Box display="flex" alignItems="center">
+                      <Box flex="0 0 30%">
+                        <NavLink to={`/cart/${e.id}`} onClick={handleClose}>
+                          <img src={e.imgdata} alt="" style={{ width: '100%', height: 'auto' }} />
+                        </NavLink>
+                      </Box>
+                      <Box flex="0 0 30%" ml={2}>
+                        <Typography variant="h6">{e.rname}</Typography>
+                        <Typography variant="body1">Price: {e.price}</Typography>
+                        <Typography variant="body1">Quantity: {e.qnty}</Typography>
+                      </Box>
+                      <Box ml="auto" display="flex" flexDirection="row" alignItems="center">
+                        {props.counter && <Counter cart={e} />}
+                        {props.deleteButton && <DeleteProduct id={e.id} />}
+                      </Box>
+                    </Box>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
+    </Box>
+  );
 };
+
 export default ProductCart;

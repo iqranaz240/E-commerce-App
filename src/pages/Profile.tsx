@@ -43,7 +43,7 @@ export default function Profile() {
   };
 
   return (
-    <Container maxWidth="md" style={{ marginTop: '2rem' }}>
+    <Container maxWidth="md" style={{ marginTop: '10rem' }}>
       <Typography variant="h4" align="center" gutterBottom>
         User Profile
       </Typography>
