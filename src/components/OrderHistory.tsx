@@ -1,7 +1,14 @@
 import React from 'react';
 import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 
-const OrderHistory = ({ orders }) => {
+interface Product {
+  imgdata: string;
+  rname: string;
+  price: number;
+  qnty: number;
+}
+
+const OrderHistory = ({ orders }: { orders: Record<string, { orderDate: string; order: Product[] }> }) => {  
   return (
     <Box maxWidth="md" mx="auto" mt={2}>
       <Paper elevation={3} style={{ padding: 16 }}>

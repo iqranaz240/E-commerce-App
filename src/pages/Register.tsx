@@ -1,10 +1,11 @@
-import React from 'react'
-import Signup from '../components/Signup'
+import React from 'react';
+import Container from '@mui/material/Container';
+import Signup from '../components/Signup';
 
 export default function Register() {
   return (
-    <div>
+    <Container maxWidth="xs">
       <Signup />
-    </div>
-  )
+    </Container>
+  );
 }

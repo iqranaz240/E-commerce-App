@@ -45,6 +45,7 @@ const LoginUser: React.FC = () => {
                     margin="normal"
                     fullWidth
                     name="password"
+                    type="password"
                     value={formData.password}
                     onChange={(e) => handleInputChange('password', e.target.value)}
                 />

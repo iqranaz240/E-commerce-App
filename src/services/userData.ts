@@ -42,7 +42,7 @@ export const getUserData = async (userId: string) => {
     return null;
 };
 
-export const updateUserProfile = async ({firstName, lastName, email, phone, address}: Form) => {
+export const updateUserProfile = async ({ firstName, lastName, email, phone, address }: Form, userId: string) => {
     const apiUrl = `${firebaseConfig.databaseURL}/users/${userId}.json`;
     console.log(apiUrl)
     if (firstName && email && phone && address !== '')

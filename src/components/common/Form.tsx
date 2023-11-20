@@ -76,6 +76,7 @@ export const Form: React.FC<FormProps> = ({ formData, onInputChange, onCheckout,
                 margin="normal"
                 fullWidth
                 name="password"
+                type="password"
                 value={formData.password}
                 onChange={(e) => onInputChange('password', e.target.value)}
             />}

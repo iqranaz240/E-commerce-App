@@ -13,8 +13,7 @@ const ProductCart = (props: any) => {
   };
 
   return (
-    <Box maxWidth="sm" mx="auto" mt={2}>
-      <Paper elevation={3} style={{ padding: 16 }}>
+    <Box maxWidth="40rem" mx="auto" mt={2} >
         <TableContainer>
           <Table>
             <TableBody>
@@ -27,7 +26,7 @@ const ProductCart = (props: any) => {
                           <img src={e.imgdata} alt="" style={{ width: '100%', height: 'auto' }} />
                         </NavLink>
                       </Box>
-                      <Box flex="0 0 30%" ml={2}>
+                      <Box flex="0 0 20%" ml={2}>
                         <Typography variant="h6">{e.rname}</Typography>
                         <Typography variant="body1">Price: {e.price}</Typography>
                         <Typography variant="body1">Quantity: {e.qnty}</Typography>
@@ -43,7 +42,6 @@ const ProductCart = (props: any) => {
             </TableBody>
           </Table>
         </TableContainer>
-      </Paper>
     </Box>
   );
 };

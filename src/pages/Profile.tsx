@@ -12,9 +12,10 @@ export default function Profile() {
     phone: '',
     address: '',
   });
+  const [userId, setUserId] = useState('');
 
   useEffect(() => {
-    const userId = auth?.currentUser?.uid;
+    setUserId(auth?.currentUser?.uid);
     console.log('User Id: ', userId)
     const fetchData = async () => {
       try {
@@ -35,7 +36,7 @@ export default function Profile() {
 
   const handleEditProfile = async () => {
     try {
-      await updateUserProfile(formData);
+      await updateUserProfile(formData, userId);
       console.log('User profile updated successfully');
     } catch (error) {
       console.error('Error updating user profile:', error);

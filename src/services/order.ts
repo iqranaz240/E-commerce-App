@@ -8,7 +8,14 @@ import { createUser } from './userData';
 
 export const auth: any = getAuth(app);
 
-export const createOrder = async (userId: any, orderDate: Date, order: any) => {
+interface Product {
+    imgdata: string;
+    rname: string;
+    price: number;
+    qnty: number;
+  }
+
+export const createOrder =  async (userId: any, orderDate: Date, order: any) => {
     const apiUrl = `${firebaseConfig.databaseURL}/orders.json`;
     console.log(apiUrl)
     const data: any = {
@@ -30,28 +37,38 @@ export const createOrder = async (userId: any, orderDate: Date, order: any) => {
 
 export const getOrderData = async (userId: string = auth?.currentUser?.uid) => {
     if (userId) {
-        try {
-          const snapshot = await get(ref(database, '/orders/'));
-          const orders = snapshot.val();
-
-            if (orders) {
-                // Filter orders by user ID
-                const userOrders = Object.entries(orders).reduce((acc, [orderId, order]) => {
-                    if (order.userId === userId) {
-                        acc[orderId] = order;
-                    }
-                    return acc;
-                }, {});
-
-                console.log(userOrders);
-                return userOrders;
-            }
-        } catch (error) {
-            console.error('Error fetching order data:', error);
+      try {
+        const snapshot = await get(ref(database, '/orders/'));
+        const orders: Record<string, { userId: string; orderDate: string; order: Product[] }> | null = snapshot.val();
+  
+        if (orders) {
+          // Filter orders by user ID
+          const userOrders = Object.entries(orders)
+            .filter(([orderId, order]) => order.userId === userId)
+            .map(([orderId, order]) => ({ ...order, orderId })) // Add orderId property
+            .sort((orderA, orderB) => {
+              const dateA = new Date(orderA.orderDate).getTime();
+              const dateB = new Date(orderB.orderDate).getTime();
+              return dateB - dateA;
+            })
+            .reduce((acc, order) => {
+              acc[order.orderId] = order;
+              return acc;
+            }, {} as Record<string, { userId: string; orderDate: string; order: Product[] }>);
+  
+          console.log(userOrders);
+          return userOrders;
         }
+      } catch (error) {
+        console.error('Error fetching order data:', error);
+      }
     }
     return null;
-};
+  };
+  
+  
+  
+  
 
 
 // export const updateUserProfile = async ({firstName, lastName, email, phone, address}: Form) => {

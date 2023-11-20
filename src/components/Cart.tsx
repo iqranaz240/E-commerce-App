@@ -24,15 +24,15 @@ const Cart = (props: any) => {
     <>
       {getdata.length ? (
         <>
-          <Box position="relative" width={500}>
+          <Box position="relative" width={700}>
             <i
               className="fas fa-close smallclose"
               onClick={props.handleClose}
-              style={{ position: "absolute", top: 2, marginTop: 10, right: 20, fontSize: 23, cursor: "pointer" }}
+              style={{ position: "absolute", top: 2, marginTop: 10, right: 15, fontSize: 20, cursor: "pointer" }}
             ></i>
-            <Typography variant="h5" paddingLeft="1.3rem" marginBottom={1} marginTop={2} > Product Details </Typography>
+            <Typography variant="h5" paddingLeft="1rem" marginBottom={1} marginTop={2} > Product Details </Typography>
             <ProductCart data={getdata} deleteButton={true} counter={true} />
-            <Box width="22rem" padding="1.3rem" position="relative">
+            <Box width="18rem" padding="1rem" position="relative">
               <Typography variant="h6" marginBottom={3}>Grand Total: {price}</Typography>
               <NavLink to="/checkout">
                 <Button variant="contained" style={{ width: "100%" }} endIcon={<ShoppingCartCheckoutIcon />}>
@@ -47,7 +47,7 @@ const Cart = (props: any) => {
           <i
             className="fas fa-close smallclose"
             onClick={props.handleClose}
-            style={{ position: "absolute", top: 2, right: 20, fontSize: 23, cursor: "pointer" }}
+            style={{ position: "absolute", top: 2, right: 15, fontSize: 20, cursor: "pointer" }}
           ></i>
           <Typography variant="h5" gutterBottom>
             Your cart is empty
